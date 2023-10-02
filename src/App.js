@@ -36,11 +36,13 @@ function App() {
         );
     };
 
+    const [catFact, setCatFact] = useState("");
+
     function fetchCats() {
         fetch("https://catfact.ninja/fact")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                setCatFact(data.fact);
             });
     }
 
@@ -72,7 +74,7 @@ function App() {
                     <button onClick={fetchCats}>
                         Generate meawsome Cat Facts!
                     </button>
-                    <p></p>
+                    <p>{catFact}</p>
                 </div>
             </div>
         </div>

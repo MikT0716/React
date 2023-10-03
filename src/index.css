@@ -21,3 +21,16 @@ code {
 .min-vh-75 {
     min-height: 40vh;
 }
+
+.catButton {
+    background: url(paw.png) no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 54px;
+}
+
+.catButton:active {
+    transform: scale(0.8);
+}

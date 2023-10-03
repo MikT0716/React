@@ -10,12 +10,13 @@ export const Task = (props) => {
             <Container>
                 <Row className="my-2 justify-content-center">
                     <Col
-                        xs={3}
+                        xs={6}
+                        md={3}
                         className={props.completed ? "py-2 completed" : "py-2"}
                     >
                         {props.taskName}
                     </Col>
-                    <Col xs={2} className="justify-content-center">
+                    <Col xs={6} md={2} className="justify-content-center">
                         <Button
                             className="mx-2"
                             variant="success"

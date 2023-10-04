@@ -1,38 +1,37 @@
-import "bootstrap/dist/css/bootstrap.css";
-import Button from "react-bootstrap/Button";
-import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export const Task = (props) => {
     return (
         <div>
-            <Container>
-                <Row className="my-2 justify-content-center">
-                    <Col
-                        xs={6}
-                        md={3}
-                        className={props.completed ? "py-2 completed" : "py-2"}
+            <div className="container-fluid">
+                <div className="row my-2 justify-content-center">
+                    <div
+                        className={
+                            props.completed
+                                ? "col-5 col-sm-5 col-md-3 py-2 ms-3 completed"
+                                : "col-5 col-sm-5 col-md-3 py-2 ms-3"
+                        }
                     >
                         {props.taskName}
-                    </Col>
-                    <Col xs={6} md={2} className="justify-content-center">
-                        <Button
-                            className="mx-2"
-                            variant="success"
+                    </div>
+                    <div className="col-4 col-md-2">
+                        <button
+                            type="button"
+                            className="btn btn-success mx-2"
                             onClick={() => props.completeTask(props.id)}
                         >
                             <FontAwesomeIcon icon={faCheck} />
-                        </Button>
-                        <Button
-                            variant="danger"
+                        </button>
+                        <button
+                            className="btn btn-danger"
                             onClick={() => props.deleteTask(props.id)}
                         >
                             <FontAwesomeIcon icon={faXmark} />
-                        </Button>
-                    </Col>
-                </Row>
-            </Container>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

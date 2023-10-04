@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Task } from "./task";
 import "bootstrap/dist/css/bootstrap.css";
-import { Nav } from "react-bootstrap";
 
 function App() {
     const [toDoList, setToDoList] = useState([]);
@@ -50,10 +49,10 @@ function App() {
         <div className="App">
             <div className="min-vh-75">
                 <h1 className="text-center">To-Do List</h1>
-                <Nav className="justify-content-center my-3">
+                <div className="text-center my-3">
                     <input onChange={handleStringInput}></input>
                     <button onClick={addNewTaskToList}>Add task</button>
-                </Nav>
+                </div>
                 <div className="list">
                     {toDoList.map((task) => {
                         return (

@@ -66,18 +66,9 @@ function App() {
     var currentHour = new Date().getHours();
     var currentMinute = new Date().getMinutes().toString().padStart(2, "0");
 
-    const apiTimeString = "06:48 AM";
+    const apiTimeString = sunrise;
     const apiTimeParts = apiTimeString.split(":");
-    const hours = parseInt(apiTimeParts[0], 10);
-    const minutes = parseInt(apiTimeParts[1].split(" ")[0], 10);
-
-    let apiDate = new Date();
-
-    // Set hours and minutes to the Date object
-    apiDate.setHours(hours, minutes);
-
-    let apiDateHours = apiDate.getHours;
-    let apiDateMinutes = apiDate.getMinutes;
+    const sunriseHour = parseInt(apiTimeParts[0], 10);
 
     return (
         <div className="App">
@@ -86,12 +77,7 @@ function App() {
                 {wind}km/h.
                 <div className="weatherIcon">
                     <img
-                        src={
-                            currentHour >= apiDateHours ||
-                            currentMinute >= apiDateMinutes
-                                ? sun
-                                : moon
-                        }
+                        src={new Date().getHours() >= sunriseHour ? sun : moon}
                         alt=""
                     ></img>{" "}
                     {currentHour}:{currentMinute}

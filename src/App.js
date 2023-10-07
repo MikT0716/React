@@ -77,7 +77,8 @@ function App() {
 
     function convertTo24HourFormat(time12h) {
         // Parse the input time string into a Date object
-        var timeTokens = time12h.match(/(\d+):(\d+) (\w+)/);
+        var timeTokens = time12h.match(/^(\d+):(\d+) ([APap][Mm])$/);
+
         var hours = parseInt(timeTokens[1]);
         var minutes = parseInt(timeTokens[2]);
         var period = timeTokens[3].toLowerCase();

@@ -66,13 +66,36 @@ function App() {
     var currentHour = new Date().getHours();
     var currentMinute = new Date().getMinutes().toString().padStart(2, "0");
 
-    const apiSunrise = sunrise;
-    const apiSunriseParts = apiSunrise.split(":");
+    const apiSunrise24h = convertTo24HourFormat(sunrise);
+    const apiSunset24h = convertTo24HourFormat(sunset);
+
+    const apiSunriseParts = apiSunrise24h.split(":");
     const sunriseHour = parseInt(apiSunriseParts[0], 10);
 
-    const apiSunset = sunset;
-    const apiSunsetParts = apiSunset.split(":");
+    const apiSunsetParts = apiSunset24h.split(":");
     const sunsetHour = parseInt(apiSunsetParts[0], 10);
+
+    function convertTo24HourFormat(time12h) {
+        // Parse the input time string into a Date object
+        var timeTokens = time12h.match(/(\d+):(\d+) (\w+)/);
+        var hours = parseInt(timeTokens[1]);
+        var minutes = parseInt(timeTokens[2]);
+        var period = timeTokens[3].toLowerCase();
+
+        // Convert 12-hour time to 24-hour format
+        if (period === "pm" && hours < 12) {
+            hours += 12;
+        } else if (period === "am" && hours === 12) {
+            hours = 0;
+        }
+
+        // Format the hours and minutes to have leading zeros if necessary
+        var formattedHours = hours.toString().padStart(2, "0");
+        var formattedMinutes = minutes.toString().padStart(2, "0");
+
+        // Return the time in 24-hour format
+        return formattedHours + ":" + formattedMinutes;
+    }
 
     return (
         <div className="App">

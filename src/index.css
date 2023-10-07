@@ -34,3 +34,12 @@ code {
 .catButton:active {
     transform: scale(0.8);
 }
+
+.navbar {
+    background-color: rgb(104, 104, 104);
+}
+
+.weatherIcon img {
+    width: 50px;
+    height: 50px;
+}

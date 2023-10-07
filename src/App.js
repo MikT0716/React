@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Task } from "./task";
 import "bootstrap/dist/css/bootstrap.css";
+import sun from "./assets/img/sun.png";
+import moon from "./assets/img/moon.png";
 
 function App() {
     const [toDoList, setToDoList] = useState([]);
@@ -45,8 +47,56 @@ function App() {
             });
     }
 
+    const [currentTemp, setCurrentTemp] = useState("");
+    const [wind, setWind] = useState("");
+    const [sunrise, setSunrise] = useState("");
+    const [sunset, setSunset] = useState("");
+
+    fetch(
+        "https://api.weatherapi.com/v1/forecast.json?key=2585eb18e183453e830183343230610&q=budapest"
+    )
+        .then((response) => response.json())
+        .then((data) => {
+            setCurrentTemp(data.current.temp_c);
+            setWind(data.current.wind_kph);
+            setSunrise(data.forecast.forecastday[0].astro.sunrise);
+            setSunset(data.forecast.forecastday[0].astro.sunset);
+        });
+
+    var currentHour = new Date().getHours();
+    var currentMinute = new Date().getMinutes().toString().padStart(2, "0");
+
+    const apiTimeString = "06:48 AM";
+    const apiTimeParts = apiTimeString.split(":");
+    const hours = parseInt(apiTimeParts[0], 10);
+    const minutes = parseInt(apiTimeParts[1].split(" ")[0], 10);
+
+    let apiDate = new Date();
+
+    // Set hours and minutes to the Date object
+    apiDate.setHours(hours, minutes);
+
+    let apiDateHours = apiDate.getHours;
+    let apiDateMinutes = apiDate.getMinutes;
+
     return (
         <div className="App">
+            <div className="navbar d-flex p-3 text-white">
+                Current weather in Budapest: {currentTemp}°C with a wind of{" "}
+                {wind}km/h.
+                <div className="weatherIcon">
+                    <img
+                        src={
+                            currentHour >= apiDateHours ||
+                            currentMinute >= apiDateMinutes
+                                ? sun
+                                : moon
+                        }
+                        alt=""
+                    ></img>{" "}
+                    {currentHour}:{currentMinute}
+                </div>
+            </div>
             <div className="min-vh-75">
                 <h1 className="text-center">To-Do List</h1>
                 <div className="text-center my-3">

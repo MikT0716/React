@@ -35,11 +35,30 @@ code {
     transform: scale(0.8);
 }
 
-.navbar {
+.navbar.navbar-expand-lg {
+    color: aliceblue;
     background-color: rgb(104, 104, 104);
 }
 
 .weatherIcon img {
     width: 50px;
     height: 50px;
+}
+
+.notFound {
+    height: 100vh;
+    width: 100vw;
+    top: 2%;
+    position: fixed;
+    background-image: url(./assets/img/404.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media only screen and (max-width: 1900px) {
+    .notFound {
+        background-size: contain;
+        background-repeat: repeat;
+    }
 }
